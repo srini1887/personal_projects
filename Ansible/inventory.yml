@@ -1,10 +1,9 @@
 all:
   vars:
     ansible_user: srini
+    ansible_ssh_pass: Srini@123
     ansible_become: true
     ansible_become_method: sudo
-    ansible_ssh_password: Srini@123
-    ansible_become_password: Srini@123
 
   children:
     centos:
