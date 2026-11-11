@@ -1,0 +1,13 @@
+---
+- name: Connect to remote servers
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Check connectivity to remote servers
+      ansible.builtin.ping:
+      register: ping_result
+
+    - name: Display ping results
+      ansible.builtin.debug:
+        var: ping_result
