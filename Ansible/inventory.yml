@@ -49,7 +49,8 @@ app_mumbai:
     appserver:
 
 
-vars:
+Variables for all hosts:
+all:
   ansible_user: srini
   ansible_ssh_password: Srini@123
   ansible_become: yes
