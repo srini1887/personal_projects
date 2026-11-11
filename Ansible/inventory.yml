@@ -39,11 +39,11 @@ dbserver:
 # Singapore parent group
 app_singapore:
   children:
-    uat
-    dev
+    uat:
+    dev:
 
 # Mumbai parent group
 app_mumbai:
   children:
-    webservers
-    appserver
+    webservers:
+    appserver:
