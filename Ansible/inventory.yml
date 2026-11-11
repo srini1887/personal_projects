@@ -3,6 +3,8 @@ all:
     ansible_user: srini
     ansible_become: true
     ansible_become_method: sudo
+    ansible_ssh_password: Srini@123
+    ansible_become_password: Srini@123
 
   children:
     centos:
