@@ -1,0 +1,13 @@
+---
+-name: demo playbook
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: check free ram
+      ansible.builtin.shell: free -m
+      register: free_ram
+
+    - name: free disk space
+      ansible.builtin.shell: df -h
+      register: free_disk
