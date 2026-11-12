@@ -10,7 +10,7 @@
   tasks:
     - name: Task for the debug module
       ansible.builtin.debug:
-        msg: "This is a debug message from {{ test }}"
+        msg: "This is a debug message from {{ test:wq! }}"
 
 
    

@@ -1,0 +1,23 @@
+#!/ansible/personal_projects/Ansible/playbook
+- name: Ansible data collection playbook
+  hosts: all
+  gather_facts: yes
+  become: yes
+  
+
+  vars:
+    ansible_user: srini
+    packages:
+    - vim
+    - git
+    - curl
+    - wget
+    - htop
+    cities: [ chennai, bangalore, hyderabad, delhi, mumbai ]
+
+  tasks:
+    - name: data collection task
+      debug:
+        var: packages
+
+    - name: data collection task2
