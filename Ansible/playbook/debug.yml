@@ -1,0 +1,13 @@
+#!ansible/personal_projects/Ansible/playbook/
+- name: Debug playbook
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Task for the dbegug module
+      ansible.builtin.debug:
+      msg: "This is a debug message from {{ inventory_hostname }}"
+
+    - name: another task for the debug module
+      ansible.builtin.debug:
+        var: ansible_facts['os_family']  
