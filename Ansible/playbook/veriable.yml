@@ -1,0 +1,16 @@
+#!#!ansible/personal_projects/Ansible/playbook/
+- name: Debug playbook
+  hosts: all
+  become: yes
+
+  vars:
+    test: hellow this is srini
+
+    
+  tasks:
+    - name: Task for the debug module
+      ansible.builtin.debug:
+        msg: "This is a debug message from {{ inventory_hostname }}"
+
+
+   
