@@ -1,4 +1,4 @@
----
+#!/ansible/personal_projects/Ansible/playbook
 - name: Demo playbook
   hosts: all
   become: yes
