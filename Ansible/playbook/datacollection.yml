@@ -16,7 +16,7 @@
     cities: [ chennai, bangalore, hyderabad, delhi, mumbai ]
 
   tasks:
-    - name: data collection task
+    - name: data collection task 1
       debug:
         var: packages
 
