@@ -6,11 +6,11 @@
   vars:
     test: hellow this is srini
 
-    
+
   tasks:
     - name: Task for the debug module
       ansible.builtin.debug:
-        msg: "This is a debug message from {{ inventory_hostname }}"
+        msg: "This is a debug message from {{ test }}"
 
 
    
