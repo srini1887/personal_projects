@@ -21,3 +21,5 @@
         var: packages
 
     - name: data collection task2
+      debug:
+        var: cities
