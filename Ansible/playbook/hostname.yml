@@ -1,0 +1,14 @@
+---
+- name: Ansible hostname playbook
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Get the hostname of the target machine
+      ansible.builtin.debug:
+        msg: "The hostname of the target machine is {{ ansible_hostname }}"
+
+    - name: Get the inventory hostname of the target machine
+      ansible.builtin.debug:
+        msg: "The inventory hostname of the target machine is {{ inventory_hostname }}"
