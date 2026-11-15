@@ -1,0 +1,36 @@
+# Timestamp playbook
+- name: Ansible timestamp playbook
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Get the current date
+      ansible.builtin.debug:
+        msg: "The current timestamp of the target machine is {{ ansible_date_time.date }}"
+
+    - name: Get the current time
+      ansible.builtin.debug:
+        msg: "The current time is {{ ansible_date_time.time }}"
+
+    - name: get the timetsamp
+      ansible.builtin.debug:
+        msg: "The current timestamp is {{ ansible_date_time.iso8601 }}"
+
+    - name: Get the unix timestamp
+      ansible.builtin.debug:
+        msg: "The unix timestamp is {{ ansible_date_time.unix }}"
+
+    - name: create a timestamp file
+      ansible.builtin.file:
+        path: /tmp/timestamp.txt_ {{ ansible_date_time.iso8601 | regex_replace(':', '-') }}
+        state: touch
+
+# run the playbook based on timestamp.yml file using the command:
+  hosts: all
+  tasks:
+    - name: run  the task only during night time (between 8 PM and 6 AM)
+      ansible.builtin.debug:
+        msg: "this task trun only during night time"
+      when: ansible_date_time.hour | int >= 20 or ansible_date_time.hour | int < 6
+
