@@ -1,0 +1,45 @@
+---
+# Scenario 1: Run on local machine
+- name: Run tasks on local machine
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Get the hostname of the local machine
+      ansible.builtin.debug:
+        msg: "The hostname of the local machine is {{ ansible_hostname }}"
+
+  tags: scenario1
+
+# Scenario 2: Run on all target hosts
+- name: Run tasks on target machines
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Get the hostname of the target machine
+      ansible.builtin.command:
+        cmd: echo "running on target machine {{ ansible_hostname }}"
+
+    - name: Run a command on the local machine
+      ansible.builtin.shell:
+        cmd: echo "Hello from the local machine!"
+        delegate_to: localhost
+
+  tags: scenario2
+
+# Scenario 3: Display inventory hostname
+- name: Get inventory hostname
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Get the inventory hostname of the target machine
+      ansible.builtin.command:
+        cmd: echo "The inventory hostname of the target machine is {{ inventory_hostname }}"
+
+    - name: Run a command on the local machine
+      ansible.builtin.command:
+        cmd: echo "Hello from the local machine!"
+
+  tags: scenario3
