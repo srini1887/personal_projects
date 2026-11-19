@@ -1,0 +1,45 @@
+---
+- name: Generate Ubuntu Patch Report
+  hosts: ubuntu_servers
+  gather_facts: no
+
+  tasks:
+
+    - name: Get Hostname
+      command: hostname
+      register: hostname_out
+      changed_when: false
+
+    - name: Get OS Version
+      shell: lsb_release -d | cut -f2
+      register: os_info
+      changed_when: false
+
+    - name: Get Kernel Version
+      command: uname -mrs
+      register: kernel_info
+      changed_when: false
+
+    - name: Get Last Dist Upgrade Information
+      shell: |
+        tac /var/log/apt/history.log | grep -m 1 -A 1 -B 4 "Commandline: apt-get dist-upgrade" | tac
+      register: patch_info
+      changed_when: false
+      failed_when: false
+
+    - name: Get Installed Package Count
+      shell: dpkg-query -W | wc -l
+      register: pkg_count
+      changed_when: false
+
+    - name: Get Installed Packages
+      shell: dpkg-query -W -f='${Package}|${Version}\n' | sort
+      register: pkg_list
+      changed_when: false
+
+    - name: Generate HTML Report
+      run_once: true
+      delegate_to: localhost
+      template:
+        src: report.html.j2
+        dest: "./ubuntu_patch_report.html"
